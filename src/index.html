@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shadow X Pro</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="app-viewport">
+    <!-- =============================================================
+         VIEW 1: DISCOVERY / HOME SCREEN
+         ============================================================= -->
+    <div id="view-discovery" class="view-page home-page active">
+      <!-- Cosmic Stars Interactive Background Canvas -->
+      <canvas id="cosmic-canvas" class="cosmic-canvas"></canvas>
+
+      <!-- Discovery Top Header -->
+      <header class="home-header">
+        <div class="home-logo-box">
+          <img src="assets/logo.png" alt="Shadow X Pro Logo" />
+        </div>
+
+        <!-- Language Selector Dropdown -->
+        <div class="lang-dropdown-wrapper">
+          <button id="lang-btn-discovery" class="lang-select-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span class="current-lang-name">English</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div id="lang-menu-discovery" class="context-menu-popup lang-dropdown-menu">
+            <button class="context-menu-item lang-option" data-lang="en">English</button>
+            <button class="context-menu-item lang-option" data-lang="zh">简体中文</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Discovery Center Content -->
+      <main class="home-content">
+        <button id="btn-add-device" class="add-device-btn">
+          <svg class="search-radar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+            <path d="M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"></path>
+          </svg>
+          <span data-i18n="addDevice">Add Device</span>
+        </button>
+
+        <p id="device-count-text" class="device-count-text">
+          <span data-i18n="findDevice">Found 1 device</span>
+        </p>
+
+        <!-- Found Device Product Card -->
+        <div id="device-card" class="product-card-container" title="Click to manage device">
+          <span class="product-card-title">USB Receiver</span>
+          <img src="assets/mouse_p6.png" class="product-card-img" alt="Shadow X Pro Mouse" draggable="false" />
+          <span class="product-card-badge" data-i18n="deviceDetails">Connected</span>
+        </div>
+      </main>
+
+      <!-- Discovery Footer -->
+      <footer class="home-footer-hint">
+        <span data-i18n="onlySupportsHint">Only supports Chrome and Edge browsers / Desktop App</span>
+      </footer>
+    </div>
+
+    <!-- =============================================================
+         VIEW 2: DETAIL / DEVICE MANAGEMENT CENTER
+         ============================================================= -->
+    <div id="view-detail" class="view-page detail-page">
+      <!-- Top Application Header -->
+      <header class="app-header">
+        <div class="header-left" id="btn-back" title="Back to Devices">
+          <img src="assets/arrow-left.svg" class="back-arrow-icon" alt="Back" />
+          <span id="equipment-title" class="header-equipment-title">USB Receiver</span>
+        </div>
+
+        <div class="header-center-logo">
+          <img src="assets/logo.png" alt="Shadow X Pro Logo" />
+        </div>
+
+        <div class="header-right-status">
+          <!-- Connection Mode Pill -->
+          <div id="mode-toggle-pill" class="mode-pill" title="Click to toggle Wired / 2.4G Mode">
+            <img id="mode-icon-img" src="assets/mode_dongle.svg" class="mode-icon" alt="Mode" />
+            <span id="mode-text">2.4G</span>
+          </div>
+
+          <!-- Battery Indicator Pill -->
+          <div class="battery-pill" title="Battery Status">
+            <svg class="battery-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="6" width="18" height="12" rx="2" ry="2"></rect>
+              <line x1="23" y1="11" x2="23" y2="13"></line>
+              <rect x="3" y="8" width="13" height="8" rx="1" fill="#32aa70" stroke="none"></rect>
+            </svg>
+            <span id="battery-percentage">100%</span>
+          </div>
+
+          <!-- Language Selector -->
+          <div class="lang-dropdown-wrapper">
+            <button id="lang-btn-detail" class="lang-select-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span class="current-lang-name">English</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div id="lang-menu-detail" class="context-menu-popup lang-dropdown-menu">
+              <button class="context-menu-item lang-option" data-lang="en">English</button>
+              <button class="context-menu-item lang-option" data-lang="zh">简体中文</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- App Body Layout (Sidebar + Main Workspace) -->
+      <div class="app-body-layout">
+        <!-- Left Profile Sidebar -->
+        <aside class="profile-sidebar">
+          <div class="sidebar-actions-row">
+            <button id="btn-add-profile" class="sidebar-btn primary" title="Add new profile">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span data-i18n="createConfig">New</span>
+            </button>
+            <button id="btn-import-profile" class="sidebar-btn outline" title="Import profile JSON">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span data-i18n="import">Import</span>
+            </button>
+            <input type="file" id="import-profile-file-input" style="display: none;" accept=".json" />
+          </div>
+
+          <!-- Profile List -->
+          <div id="profile-list-group" class="profile-list-group">
+            <!-- Dynamic profile items rendered by app.js -->
+          </div>
+        </aside>
+
+        <!-- Main Content View Area -->
+        <main class="main-content-view">
+          <!-- Main Top Navigation Tabs -->
+          <nav class="tabs-navigation-bar">
+            <div class="nav-tab-item active" data-tab="mousekey">
+              <span data-i18n="mousekey">Key Assignment</span>
+            </div>
+            <div class="nav-tab-item" data-tab="mousedpi">
+              <span data-i18n="mousedpi">DPI Setting</span>
+            </div>
+            <div class="nav-tab-item" data-tab="mouseconfig">
+              <span data-i18n="mouseconfig">Performance</span>
+            </div>
+            <div class="nav-tab-item" data-tab="mousesetting">
+              <span data-i18n="mousesetting">Other Setting</span>
+            </div>
+          </nav>
+
+          <!-- Tab Panels Container -->
+          <div class="tab-panel-container">
+            <!-- ---------------------------------------------------------
+                 TAB 1: KEY ASSIGNMENT & MOUSE DIAGRAM
+                 --------------------------------------------------------- -->
+            <section id="tab-content-mousekey" class="tab-pane active">
+              <div class="key-settings-split-layout">
+                <!-- Key Assignment Drawer Mount -->
+                <div id="keyDrawerMount" class="key-assignment-drawer"></div>
+
+                <!-- Mouse Diagram Interactive Stage Mount -->
+                <div id="mouseCalloutStage" style="flex: 1; height: 100%;"></div>
+              </div>
+            </section>
+
+            <!-- ---------------------------------------------------------
+                 TAB 2: DPI SETTINGS
+                 --------------------------------------------------------- -->
+            <section id="tab-content-mousedpi" class="tab-pane">
+              <!-- DPI Settings Mount -->
+              <div id="dpiMountStage" style="width: 100%; height: 100%;"></div>
+            </section>
+
+            <!-- ---------------------------------------------------------
+                 TAB 3: PERFORMANCE SETTINGS
+                 --------------------------------------------------------- -->
+            <section id="tab-content-mouseconfig" class="tab-pane">
+              <div class="performance-grid">
+                <!-- Card 1: Polling Rate (Report Rate) -->
+                <div class="perf-card">
+                  <span class="perf-card-title" data-i18n="returnRate">Report Rate (Polling Rate)</span>
+                  <p class="perf-card-desc">Set the communication frequency between the mouse and your computer.</p>
+                  <div class="radio-options-row">
+                    <label class="radio-pill-item">
+                      <input type="radio" name="report-rate" value="125" />
+                      <span>125 Hz</span>
+                    </label>
+                    <label class="radio-pill-item">
+                      <input type="radio" name="report-rate" value="250" />
+                      <span>250 Hz</span>
+                    </label>
+                    <label class="radio-pill-item">
+                      <input type="radio" name="report-rate" value="500" />
+                      <span>500 Hz</span>
+                    </label>
+                    <label class="radio-pill-item">
+                      <input type="radio" name="report-rate" value="1000" checked />
+                      <span>1000 Hz</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Card 2: Sleep Time & Debounce -->
+                <div class="perf-card">
+                  <span class="perf-card-title" data-i18n="sleepTime">Sleep & Debounce Time</span>
+                  
+                  <div class="toggle-row" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                      <span class="toggle-title" data-i18n="sleepTime">Sleep Time</span>
+                      <span id="perf-sleep-readout" style="font-weight: 700; color: var(--primary);">10 min</span>
+                    </div>
+                    <div style="display: flex; align-items: center; width: 100%; gap: 14px;">
+                      <input type="range" id="perf-sleep-slider" class="custom-range-slider" min="0" max="100" step="1" value="10" />
+                      <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; white-space: nowrap; cursor: pointer;">
+                        <input type="checkbox" id="perf-never-sleep-check" />
+                        <span data-i18n="neverSleep">Never Sleep</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="toggle-row" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                      <span class="toggle-title" data-i18n="debounceTime">Key Debounce Time</span>
+                      <span id="perf-debounce-readout" style="font-weight: 700; color: #66aaff;">8 ms</span>
+                    </div>
+                    <input type="range" id="perf-debounce-slider" class="custom-range-slider" min="0" max="20" step="1" value="8" />
+                  </div>
+                </div>
+
+                <!-- Card 3: Sensor Parameters & Bitmasks -->
+                <div class="perf-card">
+                  <span class="perf-card-title">Sensor Calibration</span>
+                  
+                  <div class="toggle-row">
+                    <div class="toggle-text">
+                      <span class="toggle-title" data-i18n="lodSetting">Lift-Off Distance (LOD)</span>
+                      <span class="toggle-subtitle">Sensor tracking cutoff height</span>
+                    </div>
+                    <div class="radio-options-row">
+                      <label class="radio-pill-item">
+                        <input type="radio" name="sensor-lod" value="1" checked />
+                        <span>1 mm</span>
+                      </label>
+                      <label class="radio-pill-item">
+                        <input type="radio" name="sensor-lod" value="2" />
+                        <span>2 mm</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="toggle-row">
+                    <div class="toggle-text">
+                      <span class="toggle-title" data-i18n="lineCorrection">Line Correction</span>
+                      <span class="toggle-subtitle">Angle snapping for straight cursor movement</span>
+                    </div>
+                    <label class="switch">
+                      <input type="checkbox" id="switch-line-correction" />
+                      <span class="slider-switch"></span>
+                    </label>
+                  </div>
+
+                  <div class="toggle-row">
+                    <div class="toggle-text">
+                      <span class="toggle-title" data-i18n="rippleControl">Ripple Control</span>
+                      <span class="toggle-subtitle">Smooth high-DPI cursor jitter</span>
+                    </div>
+                    <label class="switch">
+                      <input type="checkbox" id="switch-ripple-control" />
+                      <span class="slider-switch"></span>
+                    </label>
+                  </div>
+
+                  <div class="toggle-row">
+                    <div class="toggle-text">
+                      <span class="toggle-title" data-i18n="motionSync">Motion Sync</span>
+                      <span class="toggle-subtitle">Synchronize sensor frames with USB polling events</span>
+                    </div>
+                    <label class="switch">
+                      <input type="checkbox" id="switch-motion-sync" />
+                      <span class="slider-switch"></span>
+                    </label>
+                  </div>
+
+                  <div class="toggle-row">
+                    <div class="toggle-text">
+                      <span class="toggle-title" data-i18n="esportsMode">eSports High-Speed Mode</span>
+                      <span class="toggle-subtitle">Lowest latency tracking for competitive gaming</span>
+                    </div>
+                    <label class="switch">
+                      <input type="checkbox" id="switch-esports-mode" />
+                      <span class="slider-switch"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Card 4: Wheel Direction & Lighting Mode -->
+                <div class="perf-card">
+                  <span class="perf-card-title">Hardware & RGB Lighting</span>
+                  
+                  <div class="toggle-row">
+                    <div class="toggle-text">
+                      <span class="toggle-title" data-i18n="rollerDirection">Scroll Wheel Direction</span>
+                      <span class="toggle-subtitle">Invert or keep natural scroll direction</span>
+                    </div>
+                    <div class="radio-options-row">
+                      <label class="radio-pill-item">
+                        <input type="radio" name="roller-direction" value="0" checked />
+                        <span data-i18n="forward">Forward</span>
+                      </label>
+                      <label class="radio-pill-item">
+                        <input type="radio" name="roller-direction" value="1" />
+                        <span data-i18n="reverse">Reverse</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+                    <span class="toggle-title" data-i18n="lightSetting">RGB Lighting Effect</span>
+                    <select id="select-lighting-mode" class="custom-select">
+                      <option value="0" data-i18n="wave">Wave</option>
+                      <option value="1" data-i18n="neon">Neon</option>
+                      <option value="2" data-i18n="touringFlash">Touring Flash</option>
+                      <option value="3" data-i18n="yoyoBall">Yoyo Ball</option>
+                      <option value="4" data-i18n="unidirectionalFlashing">Unidirectional Flashing</option>
+                      <option value="5" data-i18n="circularBreathing">Circular Breathing</option>
+                      <option value="6" data-i18n="turnOffTheLight">Turn Off Light</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ---------------------------------------------------------
+                 TAB 4: OTHER SETTINGS (FIRMWARE & FACTORY RESET)
+                 --------------------------------------------------------- -->
+            <section id="tab-content-mousesetting" class="tab-pane">
+              <div class="other-setting-layout">
+                <div class="other-mouse-preview">
+                  <img src="assets/mouse_p6.png" alt="Shadow X Pro" draggable="false" />
+                </div>
+
+                <div class="firmware-cards-stack">
+                  <!-- Receiver Firmware Card -->
+                  <div class="firmware-item-card">
+                    <div class="firmware-meta">
+                      <span class="firmware-title" data-i18n="receiverFirmwareVersion">Receiver Firmware</span>
+                      <span class="firmware-status-tip highlight">v1.0.4 - <span data-i18n="latestVersion">Latest</span></span>
+                    </div>
+                    <button id="btn-firmware-upgrade" class="btn btn-outline" data-i18n="checkFirmwareUpgrade">
+                      Check for Updates
+                    </button>
+                  </div>
+
+                  <!-- Mouse Firmware Card -->
+                  <div class="firmware-item-card">
+                    <div class="firmware-meta">
+                      <span class="firmware-title" data-i18n="mouseFirmwareVersion">Mouse Firmware</span>
+                      <span class="firmware-status-tip highlight">v1.0.8 - <span data-i18n="latestVersion">Latest</span></span>
+                    </div>
+                    <span class="badge" style="background: rgba(50, 170, 112, 0.2); color: #32aa70; border: 1px solid #32aa70; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600;">
+                      Up to Date
+                    </span>
+                  </div>
+
+                  <!-- Macro Manager Launcher Card -->
+                  <div class="firmware-item-card">
+                    <div class="firmware-meta">
+                      <span class="firmware-title" data-i18n="macroManager">Macro Manager</span>
+                      <span class="firmware-status-tip">Record, edit, and assign complex keystroke sequences</span>
+                    </div>
+                    <button id="btn-open-macros-tab" class="btn btn-primary" data-i18n="macroManager">
+                      Open Macros
+                    </button>
+                  </div>
+
+                  <!-- Factory Reset Card -->
+                  <div class="firmware-item-card" style="border-color: rgba(234, 94, 86, 0.3);">
+                    <div class="firmware-meta">
+                      <span class="firmware-title" style="color: var(--red-danger);" data-i18n="restoreFactorySettings">Restore Factory Settings</span>
+                      <span class="firmware-status-tip">Reset all profiles, custom key assignments, and DPI stages to defaults</span>
+                    </div>
+                    <button id="btn-factory-reset" class="btn btn-danger" data-i18n="restoreFactorySettings">
+                      Restore Defaults
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       MODALS & DIALOGS
+       ============================================================= -->
+  <!-- Create Profile Modal -->
+  <div id="modal-create-profile" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span class="modal-title" data-i18n="createConfig">Create Configuration</span>
+        <button class="icon-btn" onclick="document.getElementById('modal-create-profile').classList.remove('open')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-dim text-sm" data-i18n="createConfigTip">Please enter a configuration name (1-20 characters)</p>
+        <input type="text" id="input-create-profile-name" class="input" maxlength="20" placeholder="Profile name" />
+      </div>
+      <div class="modal-footer">
+        <button id="btn-cancel-create-profile" class="btn btn-outline" data-i18n="cancel">Cancel</button>
+        <button id="btn-confirm-create-profile" class="btn btn-primary" data-i18n="ok">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rename Profile Modal -->
+  <div id="modal-rename-profile" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span class="modal-title" data-i18n="rename">Rename Configuration</span>
+        <button class="icon-btn" onclick="document.getElementById('modal-rename-profile').classList.remove('open')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-dim text-sm">Enter the new configuration name:</p>
+        <input type="text" id="input-rename-profile-name" class="input" maxlength="20" placeholder="New name" />
+      </div>
+      <div class="modal-footer">
+        <button id="btn-cancel-rename-profile" class="btn btn-outline" data-i18n="cancel">Cancel</button>
+        <button id="btn-confirm-rename-profile" class="btn btn-primary" data-i18n="ok">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Generic Confirmation Modal -->
+  <div id="generic-confirm-modal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span class="modal-title">Confirm</span>
+        <button class="icon-btn" onclick="document.getElementById('generic-confirm-modal').classList.remove('open')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="confirm-modal-message text-dim text-sm"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-cancel-action" data-i18n="cancel">Cancel</button>
+        <button class="btn btn-primary btn-confirm-action" data-i18n="ok">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Macro Editor Full Modal -->
+  <div id="macro-editor-modal" class="modal-overlay">
+    <div class="modal-dialog" style="width: 820px; height: 580px; max-width: 90vw;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="modal-title" data-i18n="macroManager">Macro Manager</span>
+          <span class="badge" style="font-size: 11px; background: rgba(0, 102, 255, 0.2); color: #66aaff; border: 1px solid rgba(0, 102, 255, 0.4); padding: 2px 6px; border-radius: 4px;">Studio</span>
+        </div>
+        <button id="btn-close-macro-modal" class="icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 0; flex: 1; overflow: hidden;">
+        <div id="macroModalMount" style="width: 100%; height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Context Menu Popup -->
+  <div id="profile-context-menu" class="context-menu-popup">
+    <button id="ctx-profile-rename" class="context-menu-item" data-i18n="rename">Rename</button>
+    <button id="ctx-profile-export" class="context-menu-item" data-i18n="export">Export</button>
+    <button id="ctx-profile-delete" class="context-menu-item danger" data-i18n="delete">Delete</button>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Application Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/tauri-bridge.js"></script>
+  <script src="js/canvas-stars.js"></script>
+  <script src="js/mouse-diagram.js"></script>
+  <script src="js/dpi-slider.js"></script>
+  <script src="js/key-drawer.js"></script>
+  <script src="js/macro-editor.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
